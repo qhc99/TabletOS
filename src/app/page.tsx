@@ -52,7 +52,7 @@ function DeliciousOS() {
         <div className="bg-blue-800 h-14 w-14">1a</div>
         <div className="bg-blue-900 h-14 w-14">1b</div>
       </div>
-      <div className="sticky bottom-0 bg-blue-500 w-screen text-center">menu</div>
+      <div className="sticky bottom-0 bg-blue-500 w-screen text-center h-16 text-5xl">menu</div>
     </div>
   );
 }

@@ -21,7 +21,7 @@ function DeliciousOS() {
 
   let icons = [];
 
-  for (let i = 0; i < 24; i++) {
+  for (let i = 0; i < 23; i++) {
     icons.push(i);
   }
 
@@ -30,7 +30,7 @@ function DeliciousOS() {
       <div className="sticky top-0 bg-gray-200 w-full text-center">
         status bar
       </div>
-      <div className="grid grid-cols-4 gap-12 w-full">
+      <div className="grid justify-items-center grid-cols-4 gap-12 w-full">
         {icons.map((d) => {
           return <Icon key={d} data={d} />;
         })}
@@ -47,10 +47,7 @@ function DeliciousOS() {
 
 function Icon(props: any) {
   return (
-    <div
-      className={`bg-green-${((props.data * 100) % 700) + 200} 
-    h-14 w-14 rounded-xl text-center`}
-    >
+    <div className={`bg-green-300 h-14 w-14 rounded-xl text-center`}>
       {props.data}
     </div>
   );

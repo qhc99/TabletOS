@@ -30,7 +30,10 @@ function DeliciousOS() {
       <div className="sticky top-0 bg-gray-200 w-full text-center">
         status bar
       </div>
-      <div className="grid justify-items-center grid-cols-4 md:grid-cols-6 gap-8 w-full">
+      <div
+        className="grid justify-items-center grid-cols-4 md:grid-cols-6 gap-8 w-full
+      phase-out origin-top-left"
+      >
         {icons.map((d) => {
           return <Icon key={d} data={d} />;
         })}

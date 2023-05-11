@@ -26,8 +26,11 @@ function DeliciousOS() {
   }
 
   return (
-    <div className="relative flex flex-col h-screen  justify-between items-center">
-      <div className="sticky top-0 bg-gray-200 w-full text-center">
+    <div
+      className="relative flex flex-col h-screen justify-between items-center 
+      bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
+    >
+      <div className="sticky top-0 bg-gray-200/20 w-full text-center">
         status bar
       </div>
       <div
@@ -39,8 +42,9 @@ function DeliciousOS() {
         })}
       </div>
       <div
-        className="sticky bottom-0 bg-gray-300 w-3/4 md:w-2/3 opacity-70 blur-[1px] text-center h-16 text-5xl 
-        rounded-xl"
+        className="sticky bottom-0 bg-gray-300 w-3/4 md:w-2/3 
+        backdrop-blur-sm opacity-40
+        text-center h-16 text-5xl rounded-xl"
       >
         menu
       </div>

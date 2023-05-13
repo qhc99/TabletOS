@@ -1,6 +1,5 @@
-import { HiddenDisableRightClickComponent } from "./client_api";
 
-export function DeliciousOS() {
+export default function DeliciousOS() {
   let icons = [];
   for (let i = 0; i < 30; i++) {
     icons.push(i);
@@ -11,7 +10,6 @@ export function DeliciousOS() {
       className="relative flex flex-col h-screen justify-between items-center 
         bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
     >
-      <HiddenDisableRightClickComponent />
       <div className="sticky top-0 bg-gray-200/20 w-full text-center">
         status bar
       </div>

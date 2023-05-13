@@ -15,6 +15,10 @@ export function useContextMenuDefaultPrevention() {
   }, []);
 }
 
+/**
+ * execute prevent default effect on contextmenu
+ * @returns an empty component that only execute efffect
+ */
 export function HiddenDisableRightClickComponent() {
   useContextMenuDefaultPrevention();
   return <div className="hidden"></div>;

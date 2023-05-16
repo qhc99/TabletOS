@@ -3,6 +3,7 @@
     "next/core-web-vitals",
     "plugin:react-hooks/recommended",
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@next/next/recommended"
   ]
 }

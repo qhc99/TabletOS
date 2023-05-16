@@ -1,3 +1,4 @@
+import React from 'react';
 
 export default function DeliciousOS() {
   let icons = [];
@@ -40,4 +41,4 @@ function Icon({ data }: { data: number }) {
   );
 }
 
-function StatusBar() {}
+// function StatusBar() {}

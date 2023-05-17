@@ -7,7 +7,7 @@ export default function DeliciousOS() {
     icons.push(i);
   }
   const [UIpos, setUIPos] = useState(1); // 0: left, 1: mid, 2: right
-  const [UITransition, setUITransition] = useState(0); // 0: turn left 1: left back 2: turn right 3: right back 4: origin
+  const [UITransition, setUITransition] = useState(4); // 0: turn left 1: left back 2: turn right 3: right back 4: origin
   const transitionCSS = (t: number) => {
     switch (t) {
       case 0:
@@ -29,24 +29,25 @@ export default function DeliciousOS() {
       onWheel={(e) => {
         if (e.deltaY < 0) {
           if (UIpos === 1) {
-            setUITransition(1);
-            return;
+            setUITransition(0);
+            setUIPos((p) => p - 1);
           } else if (UIpos === 2) {
             setUITransition(3);
-            return;
-          }
-
-          setUIPos((p) => p - 1);
+            setUIPos((p) => p - 1);
+          } 
+          
+          return;
         } else if (e.deltaY > 0) {
           if (UIpos === 0) {
             setUITransition(1);
-            return;
+            setUIPos((p) => p + 1);
           } else if (UIpos === 1) {
-            setUITransition(3);
-            return;
-          }
+            setUITransition(2);
+            setUIPos((p) => p + 1);
+          } 
+          
+          return;
         }
-        setUITransition(4);
       }}
     >
       <div className="sticky top-0 bg-gray-200/20 w-full text-center">

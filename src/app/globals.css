@@ -48,24 +48,24 @@
 
 .move-ui-left {
   animation-name: rotateLeft90;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .resume-ui-from-left {
   animation-name: rotateLeft90Reverse;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .move-ui-right {
   animation-name: rotateRight90;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .resume-ui-from-right {
   animation-name: rotateRight90Reverse;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }

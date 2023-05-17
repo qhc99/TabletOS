@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import StatusBar from "./statue_bar";
 
 export default function DeliciousOS() {
   let icons = [];
@@ -46,9 +47,7 @@ export default function DeliciousOS() {
         }
       }}
     >
-      <div className="sticky top-0 bg-gray-200/20 w-full text-center">
-        status bar
-      </div>
+      <StatusBar />
       <div
         id="ui"
         className={`grid justify-items-center grid-cols-4 md:grid-cols-6 gap-8 w-full 
@@ -76,5 +75,3 @@ function Icon({ data }: { data: number }) {
     </div>
   );
 }
-
-// function StatusBar() {}

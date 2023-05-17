@@ -1,4 +1,4 @@
-responsive ipad, mac layout (4 or 6), right click to home, mouse scroll to switch app
+responsive ipad interface (4 or 6), right click to home, mouse scroll to switch app, icons pagitation
 
 app store
 

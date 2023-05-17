@@ -34,9 +34,7 @@ export default function DeliciousOS() {
           } else if (UIpos === 2) {
             setUITransition(3);
             setUIPos((p) => p - 1);
-          } 
-          
-          return;
+          }
         } else if (e.deltaY > 0) {
           if (UIpos === 0) {
             setUITransition(1);
@@ -44,9 +42,7 @@ export default function DeliciousOS() {
           } else if (UIpos === 1) {
             setUITransition(2);
             setUIPos((p) => p + 1);
-          } 
-          
-          return;
+          }
         }
       }}
     >

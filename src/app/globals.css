@@ -15,10 +15,57 @@
   }
 }
 
-.phase-out {
+@keyframes rotateLeft90Reverse {
+  0% {
+    transform: rotate3d(0, 1, 0, 90deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+}
+
+@keyframes rotateRight90 {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  99% {
+    transform: rotate3d(0, 1, 0, -90deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, -90deg);
+    visibility: hidden;
+  }
+}
+
+@keyframes rotateRight90Reverse {
+  0% {
+    transform: rotate3d(0, 1, 0, -90deg);
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+}
+
+.move-ui-left {
   animation-name: rotateLeft90;
-  animation-duration: 3s;
-  /* animation-fill-mode: forwards; */
-  /* animation-iteration-count: infinite; */
-  
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.resume-ui-from-left {
+  animation-name: rotateLeft90Reverse;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.move-ui-right {
+  animation-name: rotateRight90;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.resume-ui-from-right {
+  animation-name: rotateRight90Reverse;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }

@@ -1,22 +1,61 @@
-import React from 'react';
+"use client";
+import React, { useState } from "react";
 
 export default function DeliciousOS() {
   let icons = [];
   for (let i = 0; i < 30; i++) {
     icons.push(i);
   }
-
+  const [UIpos, setUIPos] = useState(1); // 0: left, 1: mid, 2: right
+  const [UITransition, setUITransition] = useState(0); // 0: turn left 1: left back 2: turn right 3: right back 4: origin
+  const transitionCSS = (t: number) => {
+    switch (t) {
+      case 0:
+        return "origin-left move-ui-left";
+      case 1:
+        return "origin-left resume-ui-from-left";
+      case 2:
+        return "origin-right move-ui-right";
+      case 3:
+        return "origin-right resume-ui-from-right";
+      default:
+        return "";
+    }
+  };
   return (
     <div
-      className="relative flex flex-col h-screen justify-between items-center 
+      className="relative flex flex-col h-screen justify-between items-center
         bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
+      onWheel={(e) => {
+        if (e.deltaY < 0) {
+          if (UIpos === 1) {
+            setUITransition(1);
+            return;
+          } else if (UIpos === 2) {
+            setUITransition(3);
+            return;
+          }
+
+          setUIPos((p) => p - 1);
+        } else if (e.deltaY > 0) {
+          if (UIpos === 0) {
+            setUITransition(1);
+            return;
+          } else if (UIpos === 1) {
+            setUITransition(3);
+            return;
+          }
+        }
+        setUITransition(4);
+      }}
     >
       <div className="sticky top-0 bg-gray-200/20 w-full text-center">
         status bar
       </div>
       <div
-        className="grid justify-items-center grid-cols-4 md:grid-cols-6 gap-8 w-full
-        phase-out origin-top-left"
+        id="ui"
+        className={`grid justify-items-center grid-cols-4 md:grid-cols-6 gap-8 w-full 
+        ${transitionCSS(UITransition)}`}
       >
         {icons.map((d) => {
           return <Icon key={d} data={d} />;

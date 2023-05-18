@@ -7,8 +7,11 @@ export default function DeliciousOS() {
   for (let i = 0; i < 30; i++) {
     icons.push(i);
   }
-  const [UIpos, setUIPos] = useState(1); // 0: left, 1: mid, 2: right
-  const [UITransition, setUITransition] = useState(4); // 0: turn left 1: left back 2: turn right 3: right back 4: origin
+  // 0: left, 1: mid, 2: right
+  const [UIpos, setUIPos] = useState(1);
+
+  // 0: turn left 1: back from left 2: turn right 3: back from right 4: origin
+  const [UITransition, setUITransition] = useState(4);
   const transitionCSS = (t: number) => {
     switch (t) {
       case 0:

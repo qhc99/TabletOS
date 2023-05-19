@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import React from 'react';
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { HiddenDisableRightClickComponent } from "./client_api";
+import { HiddenDisableRightClickComponent } from "./utils_components";
 
 const inter = Inter({ subsets: ["latin"] });
 

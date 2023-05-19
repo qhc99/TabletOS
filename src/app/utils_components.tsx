@@ -1,5 +1,5 @@
 "use client";
-import { WheelEventHandler, useEffect } from "react";
+import {useEffect } from "react";
 import React from "react";
 
 export function useContextMenuDefaultPrevention() {
@@ -25,15 +25,3 @@ export function HiddenDisableRightClickComponent() {
   return <div className="hidden"></div>;
 }
 
-export function scrollDetection(
-  onUp: () => void,
-  onDown: () => void
-): WheelEventHandler<HTMLDivElement> {
-  return (e) => {
-    if (e.deltaY > 0) {
-      onUp();
-    } else if (e.deltaY < 0) {
-      onDown;
-    }
-  };
-}

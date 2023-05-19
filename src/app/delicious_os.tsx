@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import StatusBar from "./statue_bar";
+import { useContextMenuDefaultPrevention } from "./client_api";
 
 export default function DeliciousOS() {
+  useContextMenuDefaultPrevention();
   let icons = [];
   for (let i = 0; i < 30; i++) {
     icons.push(i);

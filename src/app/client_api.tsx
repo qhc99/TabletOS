@@ -1,6 +1,5 @@
 "use client";
 import {useEffect } from "react";
-import React from "react";
 
 export function useContextMenuDefaultPrevention() {
   useEffect(() => {
@@ -14,14 +13,5 @@ export function useContextMenuDefaultPrevention() {
       rootElement?.removeEventListener("contextmenu", preventRightClick);
     };
   }, []);
-}
-
-/**
- * execute prevent default effect on contextmenu
- * @returns an empty component that only execute efffect
- */
-export function HiddenDisableRightClickComponent() {
-  useContextMenuDefaultPrevention();
-  return <div className="hidden"></div>;
 }
 

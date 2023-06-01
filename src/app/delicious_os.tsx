@@ -1,16 +1,20 @@
 "use client";
 import React, { useState } from "react";
 import StatusBar from "./statue_bar";
-import { useContextMenuDefaultPrevention } from "./client_api";
+import { useContextMenuPrevension, useSpaceButtonHook } from "./client_api";
 
 export default function DeliciousOS() {
-  useContextMenuDefaultPrevention();
+  useContextMenuPrevension();
+  useSpaceButtonHook();
   let icons = [];
   for (let i = 0; i < 30; i++) {
     icons.push(i);
   }
   // 0: left, 1: mid, 2: right
   const [UIpos, setUIPos] = useState(1);
+
+  // ignore wheel event when transiting
+  const [transiting, setTransiting] = useState(false);
 
   // 0: turn left 1: back from left 2: turn right 3: back from right 4: origin
   const [UITransition, setUITransition] = useState(4);
@@ -33,21 +37,31 @@ export default function DeliciousOS() {
       className="relative flex flex-col h-screen justify-between items-center
         bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
       onWheel={(e) => {
-        if (e.deltaY < 0) {
-          if (UIpos === 1) {
-            setUITransition(0);
-            setUIPos((p) => p - 1);
-          } else if (UIpos === 2) {
-            setUITransition(3);
-            setUIPos((p) => p - 1);
-          }
-        } else if (e.deltaY > 0) {
-          if (UIpos === 0) {
-            setUITransition(1);
-            setUIPos((p) => p + 1);
-          } else if (UIpos === 1) {
-            setUITransition(2);
-            setUIPos((p) => p + 1);
+        if (!transiting) {
+          if (e.deltaY < 0) {
+            if (UIpos === 1) {
+              setUITransition(0);
+            } else if (UIpos === 2) {
+              setUITransition(3);
+            }
+
+            if (UIpos === 1 || UIpos === 2) {
+              setUIPos((p) => p - 1);
+              setTransiting(true);
+              setTimeout(() => setTransiting(false), 200);
+            }
+          } else if (e.deltaY > 0) {
+            if (UIpos === 0) {
+              setUITransition(1);
+            } else if (UIpos === 1) {
+              setUITransition(2);
+            }
+
+            if (UIpos === 0 || UIpos === 1) {
+              setUIPos((p) => p + 1);
+              setTransiting(true);
+              setTimeout(() => setTransiting(false), 200);
+            }
           }
         }
       }}

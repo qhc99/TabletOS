@@ -2,70 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes rotateLeft90 {
+@keyframes shift-left {
   0% {
-    transform: rotate3d(0, 1, 0, 0deg);
+    transform: translateX(0%);;
   }
   99% {
-    transform: rotate3d(0, 1, 0, 90deg);
+    transform: translateX(-100%);
   }
   100% {
-    transform: rotate3d(0, 1, 0, 90deg);
+    transform: translateX(-100%);
     visibility: hidden;
   }
 }
 
-@keyframes rotateLeft90Reverse {
+@keyframes shift-left-reverse {
   0% {
-    transform: rotate3d(0, 1, 0, 90deg);
+    transform: translateX(-100%);
   }
   100% {
-    transform: rotate3d(0, 1, 0, 0deg);
+    transform: translateX(0%);
   }
 }
 
-@keyframes rotateRight90 {
+@keyframes shift-right {
   0% {
-    transform: rotate3d(0, 1, 0, 0deg);
+    transform: translateX(0%);
   }
   99% {
-    transform: rotate3d(0, 1, 0, -90deg);
+    transform: translateX(100%);
   }
   100% {
-    transform: rotate3d(0, 1, 0, -90deg);
+    transform: translateX(100%);
     visibility: hidden;
   }
 }
 
-@keyframes rotateRight90Reverse {
+@keyframes shift-right-reverse {
   0% {
-    transform: rotate3d(0, 1, 0, -90deg);
+    transform: translateX(100%);
   }
   100% {
-    transform: rotate3d(0, 1, 0, 0deg);
+    transform: translateX(0%);
   }
 }
 
 .move-ui-left {
-  animation-name: rotateLeft90;
-  animation-duration: 0.5s;
+  animation-name: shift-left;
+  animation-duration: 0.3s;
   animation-fill-mode: forwards;
 }
 
 .resume-ui-from-left {
-  animation-name: rotateLeft90Reverse;
-  animation-duration: 0.5s;
+  animation-name: shift-left-reverse;
+  animation-duration: 0.3s;
   animation-fill-mode: forwards;
 }
 
 .move-ui-right {
-  animation-name: rotateRight90;
-  animation-duration: 0.5s;
+  animation-name: shift-right;
+  animation-duration: 0.3s;
   animation-fill-mode: forwards;
 }
 
 .resume-ui-from-right {
-  animation-name: rotateRight90Reverse;
-  animation-duration: 0.5s;
+  animation-name: shift-right-reverse;
+  animation-duration: 0.3s;
   animation-fill-mode: forwards;
 }

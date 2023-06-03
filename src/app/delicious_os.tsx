@@ -6,7 +6,8 @@ import { useContextMenuPrevension, useSpaceButtonHook } from "./client_api";
 export default function DeliciousOS() {
   useContextMenuPrevension();
   useSpaceButtonHook();
-  let icons = [];
+
+  let icons: number[] = [];
   for (let i = 0; i < 30; i++) {
     icons.push(i);
   }
@@ -32,44 +33,46 @@ export default function DeliciousOS() {
         return "";
     }
   };
+  const onWheelHook = (e: { deltaY: number }) => {
+    if (!transiting) {
+      if (e.deltaY < 0) {
+        if (UIpos === 1) {
+          setUITransition(0);
+        } else if (UIpos === 2) {
+          setUITransition(3);
+        }
+
+        if (UIpos === 1 || UIpos === 2) {
+          setUIPos(UIpos - 1);
+          setTransiting(true);
+          setTimeout(() => setTransiting(false), 300);
+        }
+      } else if (e.deltaY > 0) {
+        if (UIpos === 0) {
+          setUITransition(1);
+        } else if (UIpos === 1) {
+          setUITransition(2);
+        }
+
+        if (UIpos === 0 || UIpos === 1) {
+          setUIPos(UIpos + 1);
+          setTransiting(true);
+          setTimeout(() => setTransiting(false), 300);
+        }
+      }
+    }
+  };
+
   return (
     <div
-      className="relative flex flex-col h-screen justify-between items-center
+      className="flex flex-col h-screen justify-between items-center overflow-hidden
         bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
-      onWheel={(e) => {
-        if (!transiting) {
-          if (e.deltaY < 0) {
-            if (UIpos === 1) {
-              setUITransition(0);
-            } else if (UIpos === 2) {
-              setUITransition(3);
-            }
-
-            if (UIpos === 1 || UIpos === 2) {
-              setUIPos((p) => p - 1);
-              setTransiting(true);
-              setTimeout(() => setTransiting(false), 200);
-            }
-          } else if (e.deltaY > 0) {
-            if (UIpos === 0) {
-              setUITransition(1);
-            } else if (UIpos === 1) {
-              setUITransition(2);
-            }
-
-            if (UIpos === 0 || UIpos === 1) {
-              setUIPos((p) => p + 1);
-              setTransiting(true);
-              setTimeout(() => setTransiting(false), 200);
-            }
-          }
-        }
-      }}
+      onWheel={onWheelHook}
     >
       <StatusBar />
       <div
         id="ui"
-        className={`grid justify-items-center grid-cols-4 md:grid-cols-6 gap-8 w-full 
+        className={`grid justify-items-center grid-cols-4 md:grid-cols-6 gap-8 w-full overflow-hidden
         ${transitionCSS(UITransition)}`}
       >
         {icons.map((d) => {
@@ -77,9 +80,9 @@ export default function DeliciousOS() {
         })}
       </div>
       <div
-        className="sticky bottom-0 bg-gray-300 w-3/4 md:w-2/3 
+        className="bg-gray-300 w-3/4 md:w-2/3
           backdrop-blur-sm opacity-40
-          text-center h-16 text-5xl rounded-xl"
+          text-center text-5xl rounded-xl"
       >
         menu
       </div>

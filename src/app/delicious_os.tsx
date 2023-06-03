@@ -6,6 +6,7 @@ import { useContextMenuPrevension, useSpaceButtonHook } from "./client_api";
 export default function DeliciousOS() {
   useContextMenuPrevension();
   useSpaceButtonHook();
+  const updateIntervalMS = 300;
 
   let icons: number[] = [];
   for (let i = 0; i < 30; i++) {
@@ -19,6 +20,7 @@ export default function DeliciousOS() {
 
   // 0: turn left 1: back from left 2: turn right 3: back from right 4: origin
   const [UITransition, setUITransition] = useState(4);
+  
   const transitionCSS = (t: number) => {
     switch (t) {
       case 0:
@@ -45,7 +47,7 @@ export default function DeliciousOS() {
         if (UIpos === 1 || UIpos === 2) {
           setUIPos(UIpos - 1);
           setTransiting(true);
-          setTimeout(() => setTransiting(false), 300);
+          setTimeout(() => setTransiting(false), updateIntervalMS);
         }
       } else if (e.deltaY > 0) {
         if (UIpos === 0) {
@@ -57,7 +59,7 @@ export default function DeliciousOS() {
         if (UIpos === 0 || UIpos === 1) {
           setUIPos(UIpos + 1);
           setTransiting(true);
-          setTimeout(() => setTransiting(false), 300);
+          setTimeout(() => setTransiting(false), updateIntervalMS);
         }
       }
     }

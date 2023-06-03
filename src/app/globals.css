@@ -4,7 +4,7 @@
 
 @keyframes shift-left {
   0% {
-    transform: translateX(0%);;
+    transform: translateX(0%);
   }
   99% {
     transform: translateX(-100%);
@@ -46,26 +46,30 @@
   }
 }
 
+:root {
+  --ui-shift-duration: 0.3s;
+}
+
 .move-ui-left {
   animation-name: shift-left;
-  animation-duration: 0.3s;
+  animation-duration: var(--ui-shift-duration);
   animation-fill-mode: forwards;
 }
 
 .resume-ui-from-left {
   animation-name: shift-left-reverse;
-  animation-duration: 0.3s;
+  animation-duration: var(--ui-shift-duration);
   animation-fill-mode: forwards;
 }
 
 .move-ui-right {
   animation-name: shift-right;
-  animation-duration: 0.3s;
+  animation-duration: var(--ui-shift-duration);
   animation-fill-mode: forwards;
 }
 
 .resume-ui-from-right {
   animation-name: shift-right-reverse;
-  animation-duration: 0.3s;
+  animation-duration: var(--ui-shift-duration);
   animation-fill-mode: forwards;
 }

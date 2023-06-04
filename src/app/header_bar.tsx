@@ -12,15 +12,14 @@ export function useClock() {
   return clock;
 }
 
-export default function HeaderBar() {
+export function HeaderBar() {
   const clock = useClock();
+  const H = clock.getHours();
+  const M = clock.getMinutes();
   return (
     <div className="bg-gray-200/20 w-full text-center flex flex-row justify-between">
       <div>Delicious OS</div>
-      <div>
-        {clock.getHours() + ":" + clock.getMinutes()}
-      </div>{" "}
-      <div>icon</div>
+      <div>{H + ":" + (M >= 10 ? M : "0" + M)}</div> <div>icon</div>
     </div>
   );
 }

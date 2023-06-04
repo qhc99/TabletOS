@@ -1,30 +1,14 @@
 "use client";
 import { useEffect } from "react";
 
-export function useContextMenuPrevension() {
-  function preventRightClick(e: any) {
-    e.preventDefault();
-  }
-  
+export function useGlobalListener(
+  listenerName: string,
+  func: (e: any) => void
+) {
   useEffect(() => {
-    document?.addEventListener("contextmenu", preventRightClick);
+    document.addEventListener(listenerName, (event) => func(event));
     return () => {
-      document?.removeEventListener("contextmenu", preventRightClick);
+      document.removeEventListener(listenerName, func);
     };
-  }, []);
-}
-
-export function useSpaceButtonHook() {
-  function printKey(e: KeyboardEvent) {
-    if (e.key === " ") {
-      console.log("run");
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener("keydown", printKey);
-    return () => {
-      document.removeEventListener("keydown", printKey);
-    };
-  }, []);
+  });
 }

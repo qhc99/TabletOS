@@ -4,7 +4,8 @@ import { HeaderBar } from "./header_bar";
 import { useGlobalListener } from "./client_api";
 import { HomeUI } from "./home";
 import { Setting } from "./os_settings";
-import { Icon } from "./home_icon";
+import { IconButton } from "./icon_button";
+import { text } from "stream/consumers";
 
 export function DeliciousOS() {
   // remove contextmenu
@@ -12,35 +13,62 @@ export function DeliciousOS() {
   // space button as home button
   useGlobalListener("keydown", spaceToHome);
 
-  const componentNumberLimit = 10;
+  const componentCountLimit = 10;
 
   let icons: number[] = [];
   for (let i = 0; i < 30; i++) {
     icons.push(i);
   }
 
-  let t = icons.map((d) => {
-    return <Icon key={d} data={d} />;
+  let iconsComps = icons.map((d) => {
+    return { key: d, val: <div>id: {d}</div> };
   });
-  // TODO: add click 
-//   t = [<Setting />, ...t];
 
-  const home = <HomeUI comp={t} />;
+  let iconsList = iconsComps.map((d) => {
+    return (
+      <IconButton
+        key={d.key}
+        callBack={() => {
+          if (hasComponentInStack(d.val)) {
+            moveComponentToStackHead(d.val);
+          } else {
+            appendComponentInStack(d.val);
+          }
+        }}
+        text={d.key.toString()}
+        icon={null}
+      />
+    );
+  });
 
+  const home = <HomeUI comp={iconsList} />;
   // Component is created tree node, lambda is used as key
-  const [componentQueue, setComponentQueue] = useState(
-    new Array({ lambda: HomeUI, Component: home })
-  );
+  const [componentStack, setComponentStack] = useState(new Array(home));
 
   function spaceToHome(e: KeyboardEvent) {
     if (e.key === " ") {
-      setComponentQueue([
-        { lambda: HomeUI, Component: home },
-        ...componentQueue
-          .filter((e) => e.lambda !== HomeUI)
-          .slice(0, componentNumberLimit),
-      ]);
+      moveComponentToStackHead(home);
     }
+  }
+
+  function moveComponentToStackHead(component: React.JSX.Element) {
+    setComponentStack([
+      ...componentStack
+        .filter((comp) => comp !== component)
+        .slice(
+          Math.max(0, componentStack.length - componentCountLimit),
+          componentStack.length
+        ),
+      component,
+    ]);
+  }
+
+  function hasComponentInStack(e: React.JSX.Element) {
+    return componentStack.some((d) => d === e);
+  }
+
+  function appendComponentInStack(e: React.JSX.Element) {
+    setComponentStack([...componentStack, e]);
   }
 
   return (
@@ -49,7 +77,7 @@ export function DeliciousOS() {
         bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%"
     >
       <HeaderBar />
-      {componentQueue[0].Component}
+      {componentStack[componentStack.length - 1]}
     </div>
   );
 }

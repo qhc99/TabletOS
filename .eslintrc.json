@@ -3,6 +3,7 @@
     "next/core-web-vitals",
     "eslint:recommended",
     "plugin:@next/next/recommended",
+    "plugin:react-hooks/recommended",
     "prettier"
   ]
 }
